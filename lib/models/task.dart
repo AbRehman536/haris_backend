@@ -27,8 +27,8 @@ class TaskModel {
     createdAt: json["createdAt"],
   );
 
-  Map<String, dynamic> toJson(String taskID) => {
-    "docID": taskID,
+  Map<String, dynamic> toJson() => {
+    "docID": docId,
     "title": title,
     "description": description,
     "isCompleted": isCompleted,
