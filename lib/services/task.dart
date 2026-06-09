@@ -7,9 +7,14 @@ class TaskService{
 
   ///Create Task
   Future createTask(TaskModel model)async{
+    DocumentReference documentReference =
+    await FirebaseFirestore.instance
+    .collection(taskCollection)
+    .doc();
    return await FirebaseFirestore.instance
        .collection(taskCollection)
-       .add(model.toJson());
+       .doc(documentReference.id)
+       .set(model.toJson(documentReference.id));
   }
   ///Update Task
   Future updateTask(TaskModel model)async{

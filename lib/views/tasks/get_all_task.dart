@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:haris_backend/models/task.dart';
 import 'package:haris_backend/services/task.dart';
 import 'package:haris_backend/views/tasks/create_task.dart';
+import 'package:haris_backend/views/tasks/get_completed_task.dart';
+import 'package:haris_backend/views/tasks/get_incompleted_task.dart';
+import 'package:haris_backend/views/tasks/update_task.dart';
 import 'package:provider/provider.dart';
 
 class GetAllTask extends StatelessWidget {
@@ -15,6 +18,14 @@ class GetAllTask extends StatelessWidget {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GetCompletedTask()));
+          }, icon: Icon(Icons.circle)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GetInCompletedTask()));
+          }, icon: Icon(Icons.incomplete_circle)),
+        ],
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context)=> CreateTask()));
@@ -31,6 +42,27 @@ class GetAllTask extends StatelessWidget {
                   leading: Icon(Icons.task),
                   title: Text(taskList[index].title.toString()),
                   subtitle: Text(taskList[index].description.toString()),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox(
+                          value: taskList[index].isCompleted,
+                          onChanged: (value){
+                            TaskService().markAsCompletedTask(taskList[index].docId.toString(), value!);
+                          }),
+                      IconButton(onPressed: ()async{
+                        try{
+                          await TaskService().deleteTask(taskList[index].docId.toString());
+                        }catch(e){
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text(e.toString())));
+                        }
+                      }, icon: Icon(Icons.delete,color: Colors.red,)),
+                      IconButton(onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTask(model: taskList[index])));
+                      }, icon: Icon(Icons.edit,color: Colors.green,))
+                    ],
+                  ),
                 );
               },);
         },

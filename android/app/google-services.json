@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "139631766120",
+    "project_id": "haris-backend",
+    "storage_bucket": "haris-backend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139631766120:android:2227e18d2de4226ea029dd",
+        "android_client_info": {
+          "package_name": "com.example.haris_backend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADClfBUGwjH7KUdyVai_9FVHXMvHFZ2rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
