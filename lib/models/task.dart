@@ -6,6 +6,7 @@ import 'dart:convert';
 
 class TaskModel {
   final String? docId;
+  final String? priorityID;
   final String? title;
   final String? description;
   final bool? isCompleted;
@@ -13,6 +14,7 @@ class TaskModel {
 
   TaskModel({
     this.docId,
+    this.priorityID,
     this.title,
     this.description,
     this.isCompleted,
@@ -21,6 +23,7 @@ class TaskModel {
 
   factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
     docId: json["docID"],
+    priorityID: json["priorityID"],
     title: json["title"],
     description: json["description"],
     isCompleted: json["isCompleted"],
@@ -29,6 +32,7 @@ class TaskModel {
 
   Map<String, dynamic> toJson(String taskID) => {
     "docID": taskID,
+    "priorityID": priorityID,
     "title": title,
     "description": description,
     "isCompleted": isCompleted,
