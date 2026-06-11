@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:haris_backend/models/task.dart';
 import 'package:haris_backend/services/task.dart';
+import 'package:haris_backend/views/priority/get_all_priority.dart';
 import 'package:haris_backend/views/tasks/create_task.dart';
 import 'package:haris_backend/views/tasks/get_completed_task.dart';
 import 'package:haris_backend/views/tasks/get_incompleted_task.dart';
@@ -25,6 +26,9 @@ class GetAllTask extends StatelessWidget {
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=> GetInCompletedTask()));
           }, icon: Icon(Icons.incomplete_circle)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GetAllPriority()));
+          }, icon: Icon(Icons.priority_high)),
         ],
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haris_backend/models/priority.dart';
 import 'package:haris_backend/services/priority.dart';
 import 'package:haris_backend/views/priority/create_update_priority.dart';
+import 'package:haris_backend/views/priority/get_priorities.dart';
 import 'package:provider/provider.dart';
 
 class GetAllPriority extends StatelessWidget {
@@ -45,7 +46,10 @@ class GetAllPriority extends StatelessWidget {
                     }, icon: Icon(Icons.delete,color: Colors.red,)),
                     IconButton(onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> CreateUpdatePriority(model: PriorityModel(), isUpdatedMode: true)));
-                    }, icon: Icon(Icons.edit,color: Colors.blue,))
+                    }, icon: Icon(Icons.edit,color: Colors.blue,)),
+                    IconButton(onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> GetPriorities(model: priorityList[index])));
+                    }, icon: Icon(Icons.arrow_forward_ios,color: Colors.green,))
                   ],
                 ),
               );
