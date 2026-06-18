@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:haris_backend/services/auth.dart';
+import 'package:haris_backend/services/user.dart';
 import 'package:haris_backend/views/auth/forget_password.dart';
 import 'package:haris_backend/views/auth/register.dart';
 import 'package:haris_backend/views/tasks/get_all_task.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/user_provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -41,8 +45,14 @@ class _LoginState extends State<Login> {
               await AuthServices().loginUser(
                   email: emailController.text,
                   password: passwordController.text)
-                  .then((value){
+                  .then((value)async{
                     if(value.emailVerified == true){
+                      await UserServices().getUserByID(value.uid)
+                      .then((userModel){
+                        Provider.of<UserProvider>(context, listen: false).setUser(userModel);
+                        isLoading = false;
+                        setState(() {});
+                      });
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> GetAllTask()));
                     }else{
                       isLoading = false;

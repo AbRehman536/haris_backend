@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haris_backend/models/task.dart';
 import 'package:haris_backend/services/task.dart';
 import 'package:haris_backend/views/priority/get_all_priority.dart';
+import 'package:haris_backend/views/profile/get_profile.dart';
 import 'package:haris_backend/views/tasks/create_task.dart';
 import 'package:haris_backend/views/tasks/get_all_favorite_task.dart';
 import 'package:haris_backend/views/tasks/get_completed_task.dart';
@@ -32,6 +33,9 @@ class GetAllTask extends StatelessWidget {
           IconButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=> GetAllPriority()));
           }, icon: Icon(Icons.priority_high)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GetProfile()));
+          }, icon: Icon(Icons.person)),
         ],
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
